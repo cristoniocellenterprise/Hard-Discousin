@@ -1,319 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hard Discousin - Repositorio IA</title>
-    <style>
-        :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --accent: #58a6ff;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --border: #30363d;
-            --chat-user: #1f6feb;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Barra Lateral (Repositorio) */
-        sidebar {
-            width: 300px;
-            background-color: var(--bg-secondary);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .brand {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand span {
-            color: var(--accent);
-        }
-
-        .repo-section {
-            margin-bottom: 20px;
-        }
-
-        .repo-section h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .repo-list {
-            list-style: none;
-        }
-
-        .repo-item {
-            padding: 10px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-            transition: background 0.2s, border-color 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid transparent;
-        }
-
-        .repo-item:hover {
-            background-color: #21262d;
-        }
-
-        .repo-item.active {
-            background-color: #1f6feb22;
-            border-color: var(--chat-user);
-            color: #fff;
-        }
-
-        .tag {
-            font-size: 0.7rem;
-            background: #21262d;
-            padding: 2px 8px;
-            border-radius: 10px;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Contenedor Principal */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--bg-primary);
-        }
-
-        /* Cabecera */
-        header {
-            height: 60px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-        }
-
-        .status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #2ea44f;
-            border-radius: 50%;
-        }
-
-        /* Ventana de Chat */
-        .chat-container {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 14px 18px;
-            border-radius: 8px;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            white-space: pre-line; /* Mantiene saltos de línea */
-        }
-
-        .message.system {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border);
-            align-self: flex-start;
-        }
-
-        .message.user {
-            background-color: var(--chat-user);
-            color: #fff;
-            align-self: flex-end;
-        }
-
-        /* Formato especial para bloques de código */
-        code {
-            background-color: #0d1117;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: "Courier New", Courier, monospace;
-            color: #ff7b72;
-        }
-
-        pre {
-            background-color: #0d1117;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            overflow-x: auto;
-            margin: 10px 0;
-            font-family: "Courier New", Courier, monospace;
-            color: #e6edf3;
-        }
-
-        /* Entrada de Comandos */
-        .input-area {
-            padding: 20px 30px;
-            border-top: 1px solid var(--border);
-            background-color: var(--bg-primary);
-        }
-
-        .input-box {
-            display: flex;
-            gap: 10px;
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 10px 14px;
-            border-radius: 6px;
-        }
-
-        .input-box input {
-            flex: 1;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .input-box button {
-            background-color: var(--chat-user);
-            color: white;
-            border: none;
-            padding: 6px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .input-box button:hover {
-            opacity: 0.9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hard Discousin - IA local</title>
+  <style>
+    :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#c9d1d9;--muted:#8b949e;--blue:#1f6feb;--green:#2ea44f}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif;height:100vh;display:flex;overflow:hidden}
+    aside{width:290px;background:var(--panel);border-right:1px solid var(--border);padding:22px;display:flex;flex-direction:column;gap:22px}h1{font-size:20px;margin:0;color:#fff}h1 span{color:#58a6ff}.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}
+    .mode{width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid transparent;border-radius:7px;padding:12px;margin:5px 0;cursor:pointer}.mode:hover,.mode.active{background:#1f6feb22;border-color:var(--blue)}.mode strong{display:block}.mode small{color:var(--muted)}
+    main{flex:1;display:flex;flex-direction:column;min-width:0}header{height:64px;padding:0 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.status{display:flex;gap:9px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:var(--green)}#modeLabel{font-weight:700}.badge{font-size:12px;color:var(--muted)}
+    #chat{flex:1;overflow:auto;padding:28px;display:flex;flex-direction:column;gap:15px}.message{max-width:min(850px,86%);padding:14px 17px;border-radius:9px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}.system{background:var(--panel);border:1px solid var(--border);align-self:flex-start}.user{background:var(--blue);color:#fff;align-self:flex-end}.message pre{white-space:pre;overflow:auto;background:#010409;border:1px solid var(--border);padding:13px;border-radius:6px;margin:10px 0 0;font:13px ui-monospace,SFMono-Regular,Consolas,monospace}.message code{font-family:ui-monospace,monospace;color:#ff7b72}.composer{border-top:1px solid var(--border);padding:18px 28px}.input-row{display:flex;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:9px}.input-row input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-size:15px;min-width:0}.input-row button{background:var(--blue);border:0;border-radius:6px;color:#fff;padding:8px 19px;font-weight:600;cursor:pointer}.input-row button:disabled{opacity:.5}.hint{color:var(--muted);font-size:12px;margin:8px 2px 0}
+    @media(max-width:700px){aside{width:190px;padding:14px}.mode{padding:9px 7px}header,#chat,.composer{padding-left:15px;padding-right:15px}.badge{display:none}}
+  </style>
 </head>
 <body>
-
-    <!-- Barra Lateral: Selección de Versiones -->
-    <sidebar>
-        <div class="brand">
-            💾 Hard <span>Discousin</span>
-        </div>
-        
-        <div class="repo-section">
-            <h3>Versiones del Modelo</h3>
-            <ul class="repo-list">
-                <li class="repo-item active" onclick="switchVersion('Básica', this)">
-                    <div>
-                        <strong>HD-Basic v1.0</strong>
-                        <div style="font-size:0.75rem; color:var(--text-muted)">Respuestas simples y rápidas</div>
-                    </div>
-                    <span class="tag">Básica</span>
-                </li>
-                <li class="repo-item" onclick="switchVersion('Profesional', this)">
-                    <div>
-                        <strong>HD-Pro v3.5</strong>
-                        <div style="font-size:0.75rem; color:var(--text-muted)">Análisis avanzado y datos</div>
-                    </div>
-                    <span class="tag">Pro</span>
-                </li>
-                <li class="repo-item" onclick="switchVersion('Programación', this)">
-                    <div>
-                        <strong>HD-Coder r1</strong>
-                        <div style="font-size:0.75rem; color:var(--text-muted)">Escribe y depura código</div>
-                    </div>
-                    <span class="tag">Código</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="repo-section" style="margin-top: auto;">
-            <span style="color: var(--text-muted); font-size: 0.8rem;">Status: Local Host Activo</span>
-        </div>
-    </sidebar>
-
-    <!-- Panel de Control e Interacción -->
-    <main>
-        <header>
-            <div class="status">
-                <div class="status-dot"></div>
-                <span>Modelo activo: <strong id="currentModelLabel">HD-Basic v1.0 (Versión Básica)</strong></span>
-            </div>
-            <div>
-                <span style="color: var(--text-muted); font-size: 0.85rem;">Repo ID: HD-7729</span>
-            </div>
-        </header>
-
-        <!-- Contenedor del Chat -->
-        <div class="chat-container" id="chatContainer">
-            <div class="message system" id="welcomeMessage">
-                <strong>[Hard Discousin - Básica]:</strong> Hola. Soy la versión básica. Puedo darte respuestas rápidas, definiciones breves y saludos. ¿Qué necesitas saber?
-            </div>
-        </div>
-
-        <!-- Barra de entrada -->
-        <div class="input-area">
-            <div class="input-box">
-                <input type="text" id="userInput" placeholder="Escribe tu mensaje aquí..." onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()">Enviar</button>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        let currentVersion = 'Básica';
-
-        // Cambiar entre versiones desde la barra lateral
-        function switchVersion(version, element) {
-            currentVersion = version;
-            
-            // Actualizar clases activas en el menú lateral
-            document.querySelectorAll('.repo-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-
-            // Cambiar etiqueta del header
-            const label = document.getElementById('currentModelLabel');
-            const container = document.getElementById('chatContainer');
-            
-            let welcomeText = '';
-            if(version === 'Básica') {
-                label.innerText = 'HD-Basic v1.0 (Versión Básica)';
-                welcomeText = '<strong>[Hard Discousin - Básica]:</strong> Has cambiado a la versión básica. Respuestas rápidas listas.';
-            } else if(version === 'Profesional') {
-                label.innerText = 'HD-Pro v3.5 (Versión Profesional)';
-                welcomeText = '<strong>[Hard Discousin - Profesional]:</strong> Modo profesional activo. Optimizado para análisis profundo, redacción formal y lógica de negocios.';
-            } else if(version === 'Programación') {
-                label.innerText = 'HD-Coder r1 (Versión Programación)';
+  <aside>
+    <h1>💾 Hard <span>Discousin</span></h1>
+    <section><p class="eyebrow">Funciones de IA</p>
+      <button class="mode active" data-mode="basica"><strong>⚡ Básica</strong><small>Saludos, definiciones y cálculo</small></button>
+      <button class="mode" data-mode="desarrollada"><strong>🧠 Desarrollada</strong><small>Análisis, resumen y planificación</small></button>
+      <button class="mode" data-mode="codigo"><strong>💻 Programación</strong><small>Genera y explica código</small></button>
+    </section>
+    <p class="badge" style="margin-top:auto">IA local · sin API ni dependencias</p>
+  </aside>
+  <main>
+    <header><div class="status"><span class="dot"></span>Modo activo: <span id="modeLabel">Básica</span></div><span class="badge">Hard-Discousin</span></header>
+    <div id="chat" aria-live="polite"></div>
+    <div class="composer"><div class="input-row"><input id="input" autocomplete="off" placeholder="Escribe un mensaje..." aria-label="Mensaje"><button id="send">Enviar</button></div><div class="hint">Enter para enviar · Cambia de función desde el menú</div></div>
+  </main>
+  <script>
+    'use strict';
+    const state={mode:'basica',history:JSON.parse(localStorage.getItem('hd-history')||'[]')};
+    const $=id=>document.getElementById(id);
+    const modeNames={basica:'Básica',desarrollada:'Desarrollada',codigo:'Programación'};
+    function escapeHtml(value){return value.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+    function renderText(text){return escapeHtml(text).replace(/```([\s\S]*?)```/g,(_,code)=>'<pre>'+code.trim()+'</pre>').replace(/`([^`]+)`/g,'<code>$1</code>');}
+    function addMessage(role,text,save=true){const item=document.createElement('div');item.className='message '+role;item.innerHTML=renderText(text);$('chat').appendChild(item);$('chat').scrollTop=$('chat').scrollHeight;if(save){state.history.push({role,text});localStorage.setItem('hd-history',JSON.stringify(state.history.slice(-40)));}}
+    function welcome(){const text={basica:'Hola. Soy la IA básica. Puedo saludar, explicar conceptos breves y resolver operaciones como 12 * 4.',desarrollada:'Modo desarrollado activo. Puedo analizar textos, resumirlos y crear planes paso a paso.',codigo:'Modo programación activo. Puedo generar ejemplos funcionales en JavaScript, Python y HTML.'}[state.mode];addMessage('system',text,false);}
+    function calculate(input){if(!/^[0-9+\-*/%().\s]+$/.test(input))return null;try{const result=Function('"use strict";return ('+input+')')();return Number.isFinite(result)?String(result):null}catch{return null;}}
+    function basicReply(q){const clean=q.trim(),low=clean.toLowerCase(),calc=calculate(clean);if(calc!==null)return 'Resultado: '+calc;if(/^(hola|buenas|hey|saludos)/.test(low))return '¡Hola! Estoy listo para ayudarte.';if(low.includes('gracias'))return '¡De nada!';const defs={javascript:'JavaScript es un lenguaje que permite crear interactividad en páginas web.',html:'HTML define la estructura y el contenido de una página web.',css:'CSS controla la presentación visual de documentos HTML.',ia:'La inteligencia artificial usa algoritmos para realizar tareas que normalmente requieren razonamiento humano.'};for(const key in defs)if(low.includes(key))return defs[key];return 'Puedo responder saludos, definiciones y operaciones matemáticas. Prueba, por ejemplo: “¿qué es JavaScript?” o “25 / 5”.';}
+    function developedReply(q){const low=q.toLowerCase();if(low.startsWith('resume')||low.startsWith('resum')){const words=q.split(/\s+/).slice(1);return words.length?'Resumen: '+words.slice(0,35).join(' ')+(words.length>35?'…':''):'Pega después de “resume” el texto que quieres resumir.';}if(low.includes('plan')||low.includes('aprender'))return 'Plan recomendado:\n1. Define el objetivo y el resultado esperado.\n2. Divide el trabajo en tareas pequeñas.\n3. Prioriza la primera tarea y establece una fecha.\n4. Comprueba el resultado y ajusta el siguiente paso.';return 'Análisis desarrollado: '+q+'\n\nInterpretación: la petición necesita identificar objetivo, contexto y resultado esperado.\n\nSiguiente paso: especifica el formato, las restricciones y un ejemplo para producir una respuesta más precisa.';}
+    function codeReply(q){const low=q.toLowerCase();if(low.includes('python'))return 'Aquí tienes una función Python funcional:\n```python\ndef saludar(nombre: str) -> str:\n    """Devuelve un saludo personalizado."""\n    return f"Hola, {nombre}!"\n\nprint(saludar("Mundo"))\n```';if(low.includes('html'))return 'Aquí tienes una página HTML funcional:\n```html\n<!doctype html>\n<html lang="es"><body>\n  <button id="saludar">Saludar</button>\n  <p id="resultado"></p>\n  <script>\n    document.querySelector("#saludar").onclick = () => {\n      document.querySelector("#resultado").textContent = "¡Hola!";\n    };\n  <\/script>\n</body></html>\n```';return 'Ejemplo JavaScript funcional para tu solicitud:\n```javascript\nfunction resolver(pregunta) {\n  if (!pregunta?.trim()) throw new Error("La pregunta está vacía");\n  return `Solicitud recibida: ${pregunta.trim()}`;\n}\n\nconsole.log(resolver("'+q.replace(/[`\\]/g,'')+'"));\n```\n\nPide “Python” o “HTML” para cambiar el lenguaje.';}
+    function reply(q){return state.mode==='basica'?basicReply(q):state.mode==='desarrollada'?developedReply(q):codeReply(q);}
+    function send(){const input=$('input'),q=input.value.trim();if(!q)return;addMessage('user',q);input.value='';$('send').disabled=true;setTimeout(()=>{addMessage('system',reply(q));$('send').disabled=false;input.focus();},250);}
+    document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>{state.mode=button.dataset.mode;document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));button.classList.add('active');$('modeLabel').textContent=modeNames[state.mode];welcome();}));
+    $('send').addEventListener('click',send);$('input').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+    if(state.history.length){state.history.forEach(m=>addMessage(m.role,m.text,false));}else welcome();
+  </script>
+</body>
+</html>
